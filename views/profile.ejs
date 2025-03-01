@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODS Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="icon" type="image/x-icon" href="imgs/CODS_LOGO.ico">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="header mt-4">
+        <nav id="myNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top mt-4">
+            <div class="container">
+                <a class="navbar-brand" href="/front">CODS</a>
+                <button
+                    class="navbar-toggler hidden-lg-up"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                ><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul id="menu" class="navbar-nav me-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/front" aria-current="page" style="color:#2E4C72;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/catalog">Catalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/basket">Basket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dataPage">Currency</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history" >View Request History</a>
+                        </li>
+                    </ul>
+                    <button id="logoutButton" class="btn">Logout</button>
+                    <button
+                        id="changeBtn"
+                        class="btn my-1 my-sm-0 mx-4"
+                        type="button"
+                        onclick="changeBackground()"
+                    >
+                        Change Theme
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-section flex-grow-1">
+        
+        <div class="header-section2 ms-5 mb-3">
+            <h2>Profile</h2>
+            <p id="greeting"></p>
+            <button 
+                id="readMoreBtn"
+                class="btn"
+                type="button"
+                onclick="readMore()"
+            >Read more</button>
+            <button 
+                id="timeBtn"
+                class="btn"
+                type="button"
+            >Time</button>
+                <div id="extraContent">
+                      <p>Here users can view their profile, change it, view their orders, go to 'Boards', settings and ask for help.</p>
+                </div> 
+        </div>
+
+
+        <div class="container text-center">
+            <div class="row">
+              <div class="col col_layout rounded-4 m-2 p-2">
+                <div class="d-inline-block mt-4">
+                    <figure class="d-flex gap-1">
+                        <img id="Gojo" src="imgs/Goju_satoru.JPG" alt="Profile Picture">
+                        <div class="profile_name">
+                            <figcaption id="fig_name"><%= user.username %></figcaption>
+                            <figcaption id="fig_email"><%= user.email %></figcaption>
+                        </div>
+                    </figure>
+                </div>
+                <a href="/edit-profile" class="btn" id="edit_profile" target="_self">Edit profile</a>
+              </div>
+
+              <div class="col rounded-4 p-2 m-2">
+                <div class="text-start p-2">
+                    <p class="container_name px-3 py-2 d-inline-block rounded-3">My orders</p>
+                    <div class="d-grid align-items-center text-start gap-1">
+                        <div class="condition rounded-3 p-2"><p class="my-auto ms-2">In progress</p></div>
+                        <div class="condition rounded-3 p-2"><p class="my-auto ms-2">Completed</p></div>
+                        <div class="condition rounded-3 p-2"><p class="my-auto ms-2">Canceled</p></div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="col rounded-4 p-2 m-2">
+                <div class="boards-block">
+                    <p class="container_name px-3 py-2 d-inline-block rounded-3">Boards</p>
+                    <div class="boards_imgs">
+                        <img class="imgs rounded-3 " src="imgs/blue_flower.jpg" alt="blue_flower">
+                        <img class="imgs rounded-3 " src="imgs/Blue_bant.jpg" alt="Blue_bant">
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col rounded-4 p-2 m-2">
+                    <div class="d-grid">
+                        <div class="set d-flex align-items-center justify-content-between rounded-3 p-1 m-1"><p class="my-auto ms-3">Geolocation</p>
+                            <a 
+                            href="/geolocation"
+                            id="geo_btn"
+                            class="set_btn btn"
+                            >View</a>
+                        </div>
+                        <div class="set d-flex align-items-center justify-content-between rounded-3 p-1 m-1"><p class="my-auto ms-3">Language</p>
+                            <select id="lang_select" class="set_btn form-select" style="width: 200px;">
+                                <option value="">Select Language</option>
+                                <option value="en">English</option>
+                                <option value="ru">Русский</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="zh-CN">中文</option>
+                                <option value="ar">العربية</option>
+                            </select>
+                        </div>
+                        <div id="google_translate_element"></div>
+                        <div class="set d-flex align-items-center justify-content-between rounded-3 p-1 m-1"><p class="my-auto ms-3">Notification</p>
+                            <button 
+                            id="notif_btn"
+                            class="set_btn btn">Off</button>
+                        </div>
+                    </div>
+                    <p class="container_name px-3 py-2 m-0 d-inline-block rounded-3">Settings</p>
+                </div>
+                <div class="col rounded-4 p-2 m-2">
+                    <p class="container_name px-3 py-2 d-inline-block rounded-3">Contuct us</p>
+                    <div class="contact-block d-grid text-start ms-5 mt-1">
+                        <p class="contact_text"><i class="fas fa-envelope"></i>IDcods2023@gmail.com</p>
+                        <p class="contact_text"><i class="fas fa-phone"></i>+7 777 34 2178</p>
+                        <p class="contact_text"><i class="fas fa-question-circle"></i>Guide</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        
+    </main>
+
+    <footer id="myFooter" class="footer-section text-white text-center mt-2 bottom-0 start-0 w-100">
+        <p>Created by Ussurbayeva Inkar, Ablanova Dariya, Alpieva Leila, IT-2307</p>
+        <a id="footer_text" href="#top">Back to top</a>
+    </footer>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'auto'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script src="/js/profile.js"></script>
+
+
+</body>
+</html>

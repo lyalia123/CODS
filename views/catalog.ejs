@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog Page</title>
+    <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/catalog.css">
+    <link rel="icon" type="image/x-icon" href="imgs/CODS_LOGO.ico">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="mt-4">
+        <nav id="myNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top mt-4">
+            <div class="container ">
+                <a class="navbar-brand" href="/front">CODS</a>
+                <button
+                    class="navbar-toggler hidden-lg-up"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavId"
+                    aria-controls="collapsibleNavId"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                ></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul id="menu" class="navbar-nav me-auto mt-2 mt-lg-0">
+                        <li tabindex="0" class="nav-item">
+                            <a class="nav-link active" href="/front" aria-current="page" style="color:#2E4C72 ;">Home
+                                <span class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li tabindex="0" class="nav-item">
+                            <a class="nav-link" href="/catalog">Catalog</a>
+                        </li>
+                        <li tabindex="0" class="nav-item">
+                            <a class="nav-link" href="/basket">Basket</a>
+                        </li>
+                        <li tabindex="0" class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dataPage">Currency</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history" >View Request History</a>
+                        </li>
+                    
+                    </ul>
+                    <button id="logoutButton" class="btn">Logout</button>
+                
+                    <button
+                            id="changeBtn"
+                            class="btn my-1 my-sm-0 mx-4"
+                            type="button"
+                            onclick="changeBackground()"
+                        >
+                            Change Colors
+                        </button>
+                        <audio id="saveSound" src="imgs/save.mp3" preload="auto"></audio>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow-1 h-100">
+        <div class="catalog-container mt-5 pt-5 text-center">
+            <div class="search-bar d-flex justify-content-center align-items-center gap-4">
+                <div class="catalog-title"><h1>Catalog</h1></div>
+                <input type="text" class="search-input rounded-4 p-3" placeholder="Search for a product" id="searchProductInput">
+                <button class="btn " onclick="searchProduct()">Search</button>
+            </div>
+
+            <div id="productCarousel" class="carousel slide mx-auto" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex justify-content-center flex-wrap m-3">
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/tshirt.jpg" alt="T-Shirt" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">T-Shirt</p>
+                            </div>
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/outerwear.jpg" alt="Outerwear" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Outerwear</p>
+                            </div>
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/rousers.jpg" alt="Trousers" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Trousers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center flex-wrap m-3">
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/shoes.jpg" alt="Shoes" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Shoes</p>
+                            </div>
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/necklace.jpg" alt="Necklace" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Necklace</p>
+                            </div>
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/dress.jpg" alt="Dresses" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Dresses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center flex-wrap m-3">
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/bagss.jpg" alt="Bags" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Bags</p>
+                            </div>
+                            <div class="product-item rounded-4 text-center m-2 col-6 col-sm-4 col-md-3">
+                                <img src="images/jacket.jpg" alt="Jackets" class="img-fluid rounded-4 p-3">
+                                <p class="product_name">Jackets</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Prev and Next buttons -->
+                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="container mt-5">
+                <h2 class="text-center">Available Products</h2>
+                <% if (products.length === 0) { %>
+                    <p class="text-center">No products available.</p>
+                <% } %>
+                <div class="row">
+                    <% products.forEach(product => { %>
+                        <div class="col-6 col-sm-4 col-md-3 mb-4">
+                            <div class="card text-center">
+                                <img src="<%= product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150' %>"
+                                class="card-img-top img-fluid p-3" 
+                                alt="Product Image">
+
+
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= product.name_en %></h5>
+                                    <p class="card-text"><%= product.description_en %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            
+
+            <div class="question-of-the-day m-auto text-white" style="max-width: 400px;">
+                <h3>Question of the Day</h3>
+                <p>Ask your question, and we will definitely answer it!</p>
+                <input type="text" placeholder="Write your question" class="form-control" id="userQuestion" style="width: 100%; margin-bottom: 15px;">
+                <button class="btn mt-3" onclick="submitQuestion()" style="width: 100%;">Ask a question</button>
+            </div>
+
+
+        
+        </div>
+    </main>
+
+    <script>
+        function searchProduct() {
+            const input = document.getElementById("searchProductInput").value.toLowerCase();
+            const products = Array.from(document.getElementsByClassName("product-item"));
+            let found = false;
+
+            products.forEach(product => {
+                const name = product.getElementsByClassName("product_name")[0].textContent.toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = "block";
+                    found = true;
+                } else {
+                    product.style.display = "none";
+                }
+            });
+
+            // Показать сообщение, если продукт не найден
+            if (!found) {
+                alert("Product not found");
+            }
+        }
+        function submitQuestion() {
+            const question = document.getElementById("userQuestion").value;
+            if (question) {
+                alert("Your question has been sent! We will answer it soon.");
+            } else {
+                alert("Please enter a question.");
+            }
+        }
+    </script>
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'auto'}, 'google_translate_element');
+        }
+    </script>
+    <script src="/js/language.js"></script>
+    <script src="/core.js"></script>
+    <script src="/public/js/catalog.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <footer id="myFooter" class="footer-section text-white text-center mt-2 p-3 bottom-0 start-0 w-100">
+        <p>Created by Ussurbayeva Inkar, Ablanova Dariya, Alpieva Leila, IT-2307</p>
+        <a id="footer_text" href="#top">Back to top</a>
+    </footer>
+</body>
+</html>
